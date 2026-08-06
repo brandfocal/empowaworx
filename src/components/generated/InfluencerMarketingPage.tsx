@@ -236,12 +236,6 @@ const FACULTY: FacultyMemberData[] = [{
   title: 'Acting Managing Executive | Influencer Marketing, Creator Economy & Cultural Influence Lead',
   description: "Neo Mathebe is a strategic influence, creator partnerships and audience engagement specialist with expertise in influencer marketing, creator economy strategy, talent management and cultural influence. He advises brands, organisations and leaders on how to harness the power of creators, communities and culture to build relevance, strengthen reputation, accelerate engagement and drive measurable business impact. His expertise spans influencer strategy, creator partnerships, talent representation, thought leadership positioning, digital influence campaigns, community building, cultural intelligence and platform growth. Neo works at the intersection of influence, content, culture and commerce, helping organisations transform audiences into communities, creators into brand advocates and influence into sustainable commercial value.",
   image: '/Neo-Mathebe.JPG'
-}, {
-  id: 'f2',
-  name: 'Simphiwe Majola',
-  title: 'Lead: Creator Partnerships, Talent Management & Influencer Relations',
-  description: "Simphiwe Majola is a creator partnerships, talent management and influencer relations specialist with experience in building high-impact collaborations between brands, creators, media personalities, thought leaders and cultural influencers. He develops and manages strategic partnerships that amplify brand visibility, strengthen audience engagement and drive authentic influence across digital and traditional platforms. His expertise includes influencer identification and management, creator ecosystem development, campaign partnerships, stakeholder engagement, content collaborations, talent relations and influence-led marketing programmes. Simphiwe helps organisations navigate the rapidly evolving creator economy by connecting brands with trusted voices, influential communities and culturally relevant narratives that drive awareness, trust, engagement and growth.",
-  image: '/Simphiwe-Majola.jpg'
 }];
 const SOCIAL_ITEMS = [{
   icon: <Linkedin size={18} />,

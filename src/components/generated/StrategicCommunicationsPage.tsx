@@ -535,12 +535,6 @@ const FACULTY_MEMBERS = [{
   description: "Milton Nkosi is an award-winning journalist, former BBC Africa Bureau Chief, international correspondent and trusted media advisor with more than three decades of experience covering some of Africa's most defining political, economic and social developments. As Chairman of MMN International Consulting and a leading commentator on geopolitics, media and reputation, he advises organisations on crisis communications, media strategy, public affairs, executive positioning and stakeholder engagement. His global perspective and deep understanding of narrative influence help leaders communicate with credibility, authority and impact.",
   image: '/Milton-Nkosi.jpg'
 }, {
-  id: 'fac3',
-  name: 'Simphiwe Majola',
-  title: 'PR, Reputation & Stakeholder Influence Lead',
-  description: 'Simphiwe Majola is a strategic communications and public relations specialist with expertise in reputation management, executive profiling, stakeholder engagement and thought leadership positioning. He works with organisations, executives and brands to strengthen visibility, build stakeholder confidence and enhance organisational influence through integrated communication strategies that align reputation with business objectives and sustainable growth.',
-  image: '/Simphiwe-Majola.jpg'
-}, {
   id: 'fac4',
   name: 'Mika Chauke',
   title: 'Corporate Communications & Executive Communications Specialist',

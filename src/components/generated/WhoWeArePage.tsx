@@ -245,11 +245,6 @@ const FACULTY_GROUPS: FacultyGroup[] = [{
     description: "Milton Nkosi is an award-winning journalist, former BBC Africa Bureau Chief, international correspondent and trusted media advisor with more than three decades of experience covering some of Africa's most defining political, economic and social developments. As Chairman of MMN International Consulting and a leading commentator on geopolitics, media and reputation, he advises organisations on crisis communications, media strategy, public affairs, executive positioning and stakeholder engagement. His global perspective and deep understanding of narrative influence help leaders communicate with credibility, authority and impact.",
     image: '/team_faculty/Milton-Nkosi.jpg'
   }, {
-    name: 'Simphiwe Majola',
-    role: 'Public Relations, Media Relations & Communications',
-    description: 'Simphiwe Majola is a strategic communications and corporate reputation advisor with expertise in public relations, executive positioning, stakeholder communications, media engagement and thought leadership. He partners with organisations and executive leaders to build trusted reputations, strengthen stakeholder confidence and amplify organisational influence through integrated communications strategies that support business growth, market leadership and long-term organisational value.',
-    image: '/team_faculty/Simphiwe-Majola.jpg'
-  }, {
     name: 'Tshepo Sefotlhelo',
     role: 'Chief Reputation Architect',
     description: 'Tshepo Sefotlhelo is a reputation architecture and executive influence strategist specialising in corporate reputation, stakeholder trust, executive advisory, strategic positioning and organisational influence. He advises boards and executive leadership teams on leveraging reputation as a strategic enterprise asset that strengthens market leadership, builds resilient organisations, enhances stakeholder confidence and creates enduring commercial, reputational and societal value.',
@@ -275,11 +270,6 @@ const FACULTY_GROUPS: FacultyGroup[] = [{
     role: 'Talent, Speakers & Executive Relations',
     description: 'Anita Tirkey is an executive engagement and leadership experiences specialist with expertise in speaker strategy, executive relations, stakeholder engagement, protocol and high-impact programme delivery. She partners with global thought leaders, industry experts and executive teams to curate world-class leadership platforms that strengthen organisational influence, elevate stakeholder experiences and create meaningful conversations that inspire transformation, innovation and growth.',
     image: '/team_faculty/Anita-Tirkey.jpg'
-  }, {
-    name: 'Thabo Molefe',
-    role: 'Partnerships & Strategic Growth Lead – EmpowaYouth',
-    description: 'Thabo Molefe is a strategic partnerships and youth ecosystem development specialist with expertise in partnership development, stakeholder engagement, skills development ecosystems, youth employability, enterprise development and cross-sector collaboration. He works with corporate, government, development finance institutions and strategic partners to mobilise investment, build high-impact partnerships and create integrated opportunities that connect young people to education, skills, entrepreneurship, employment and economic participation. His work strengthens the EmpowaYouth ecosystem by enabling scalable partnerships that accelerate inclusive growth, future-ready talent and sustainable socio-economic impact across Africa.',
-    image: '/Thabo-Molefe.jpg'
   }]
 }, {
   category: 'ESG, IMPACT & ECONOMIC DEVELOPMENT ADVISORY',
