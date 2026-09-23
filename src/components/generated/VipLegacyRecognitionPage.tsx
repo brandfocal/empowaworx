@@ -470,11 +470,11 @@ export const VipLegacyRecognitionPage: React.FC = () => {
               <div className="relative group bg-[#141414] border border-white/10 rounded-[2px] overflow-hidden p-2 shadow-2xl">
                 <div className="relative overflow-hidden bg-black aspect-[4/3] sm:aspect-[16/11]">
                   <img
-                    src="/dr-david-molapo-hero.jpg"
+                    src="/Dr-David-Molapo-legacy.jpg"
                     alt="Dr David Molapo - VIP Legacy Recognition"
-                    className="w-full h-full object-cover object-top filter brightness-95 contrast-105 group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover object-[center_25%] filter brightness-95 contrast-105 group-hover:scale-105 transition-transform duration-700"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = "https://img.youtube.com/vi/z3Fas4VQvzw/maxresdefault.jpg";
+                      (e.target as HTMLImageElement).src = "/dr-david-molapo-hero.jpg";
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" />
