@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   ShieldCheck,
   Calendar,
@@ -12,8 +12,6 @@ import {
   Phone,
   Video,
   Printer,
-  Play,
-  X,
   Copy,
   Check,
   ArrowRight,
@@ -145,7 +143,6 @@ export const VipLegacyRecognitionPage: React.FC = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [submissionRef, setSubmissionRef] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [activeVideoModal, setActiveVideoModal] = useState(false);
   const [copiedRef, setCopiedRef] = useState(false);
 
   // Field change handler
@@ -438,7 +435,7 @@ export const VipLegacyRecognitionPage: React.FC = () => {
                 EmpowaWorx and The Speakers Firm invite you to an exclusive VIP recognition ceremony honouring the enduring leadership, cultural impact, and generational footprint of Dr David Molapo.
               </p>
 
-              {/* CTA Buttons */}
+              {/* CTA Button */}
               <div className="pt-4 flex flex-wrap gap-4 items-center">
                 <a
                   href="#registration-form"
@@ -448,15 +445,6 @@ export const VipLegacyRecognitionPage: React.FC = () => {
                   <span>Proceed to Accreditation</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </a>
-
-                <button
-                  type="button"
-                  onClick={() => setActiveVideoModal(true)}
-                  className="flex items-center justify-center gap-2.5 bg-transparent hover:bg-white/5 border border-white/20 text-white font-semibold text-[13px] tracking-[0.14em] h-14 px-7 rounded-[2px] uppercase transition-all duration-200 ease-in-out"
-                >
-                  <Play className="w-4 h-4 text-[#FC3637] fill-[#FC3637]" />
-                  <span>Watch Keynote Tribute</span>
-                </button>
               </div>
             </motion.div>
 
@@ -692,13 +680,6 @@ export const VipLegacyRecognitionPage: React.FC = () => {
                 >
                   <Printer className="w-4 h-4 text-[#FC3637]" />
                   Print Accreditation Summary
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsSuccess(false)}
-                  className="px-6 py-3 rounded-[2px] bg-transparent hover:bg-white/5 border border-white/10 text-white/60 hover:text-white text-xs tracking-wider uppercase transition-all"
-                >
-                  Edit Registration
                 </button>
               </div>
             </motion.div>
@@ -2281,50 +2262,6 @@ export const VipLegacyRecognitionPage: React.FC = () => {
           </div>
         </section>
       </main>
-
-      {/* --- VIDEO MODAL FOR DR DAVID MOLAPO TRIBUTE --- */}
-      <AnimatePresence>
-        {activeVideoModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
-            onClick={() => setActiveVideoModal(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-4xl bg-[#141414] rounded-[2px] overflow-hidden border border-white/20 shadow-2xl relative"
-            >
-              <div className="flex items-center justify-between p-4 border-b border-white/10 bg-[#111111]">
-                <div className="text-sm font-bold uppercase tracking-wider text-white flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-[#FC3637]" />
-                  Dr David Molapo — Keynote & Legacy Highlights
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setActiveVideoModal(false)}
-                  className="p-1 text-white/60 hover:text-white transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="aspect-video w-full bg-black">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/z3Fas4VQvzw?autoplay=1"
-                  title="Dr David Molapo"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full border-0"
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <Footer />
     </div>
