@@ -326,13 +326,25 @@ export const VipLegacyRecognitionPage: React.FC = () => {
       // ID 27: Please indicate your relationship with Dr David Molapo:
       "input_27": formData.relationship === 'Other' && formData.relationshipOther ? `Other: ${formData.relationshipOther}` : formData.relationship,
       // ID 28: How would you like to attend?
-      "input_28": formData.attendanceType === 'Virtually via Secure Livestream' && formData.virtualLivestreamEmail ? `${formData.attendanceType} (${formData.virtualLivestreamEmail})` : formData.attendanceType,
+      "input_28": formData.attendanceType,
+      // ID 50: Livestream email recipient
+      "input_50": formData.attendanceType === 'Virtually via Secure Livestream' ? formData.virtualLivestreamEmail : '',
       // ID 29: Will you attend the full ceremony from 18h00 to 21h00?
-      "input_29": formData.fullCeremonyAttendance === 'No' && formData.partialAttendanceTimes ? `No (Times: ${formData.partialAttendanceTimes})` : formData.fullCeremonyAttendance,
+      "input_29": formData.fullCeremonyAttendance,
+      // ID 51: Please indicate your anticipated arrival and departure times
+      "input_51": formData.fullCeremonyAttendance === 'No' ? formData.partialAttendanceTimes : '',
       // ID 30: Will you be accompanied by an essential protocol, accessibility or security support person?
-      "input_30": formData.hasSupportPersonnel === 'Yes' 
-        ? `Yes - ${formData.supportFullName} (${formData.supportRole || 'Support'}, ${formData.supportOrg || 'N/A'}, Tel: ${formData.supportMobile || 'N/A'}, Reason: ${formData.supportReason || 'N/A'})` 
-        : 'No',
+      "input_30": formData.hasSupportPersonnel,
+      // ID 52: Accompanying Personnel Full name and surname
+      "input_52": formData.hasSupportPersonnel === 'Yes' ? formData.supportFullName : '',
+      // ID 53: Accompanying Personnel role and designation
+      "input_53": formData.hasSupportPersonnel === 'Yes' ? formData.supportRole : '',
+      // ID 54: Accompanying Personnel mobile number
+      "input_54": formData.hasSupportPersonnel === 'Yes' ? formData.supportMobile : '',
+      // ID 55: Accompanying Personnel security
+      "input_55": formData.hasSupportPersonnel === 'Yes' ? formData.supportOrg : '',
+      // ID 56: Accompanying Personnel reason for access requirement
+      "input_56": formData.hasSupportPersonnel === 'Yes' ? formData.supportReason : '',
       // ID 31: Dietary Requirements
       "input_31": formData.dietary === 'Other' && formData.dietaryOther ? `Other: ${formData.dietaryOther}` : formData.dietary,
       // ID 32: Please provide relevant dietary or allergy details
@@ -342,13 +354,25 @@ export const VipLegacyRecognitionPage: React.FC = () => {
       // ID 34: Additional accessibility, hospitality, health or protocol information
       "input_34": formData.additionalHospitalityNotes,
       // ID 35: Do you require official protocol or security coordination?
-      "input_35": formData.requiresProtocolCoordination === 'Yes'
-        ? `Yes - ${formData.protocolOfficialName} (${formData.protocolOfficialOrg || 'N/A'}, Email: ${formData.protocolOfficialEmail || 'N/A'}, Tel: ${formData.protocolOfficialMobile || 'N/A'}, Count: ${formData.protocolPersonnelCount || 'N/A'}, Requirements: ${formData.protocolSecurityRequirements || 'N/A'})`
-        : 'No',
+      "input_35": formData.requiresProtocolCoordination,
+      // ID 57: Responsible official's full name
+      "input_57": formData.requiresProtocolCoordination === 'Yes' ? formData.protocolOfficialName : '',
+      // ID 58: Organisation or department
+      "input_58": formData.requiresProtocolCoordination === 'Yes' ? formData.protocolOfficialOrg : '',
+      // ID 59: Email address
+      "input_59": formData.requiresProtocolCoordination === 'Yes' ? formData.protocolOfficialEmail : '',
+      // ID 60: Mobile number
+      "input_60": formData.requiresProtocolCoordination === 'Yes' ? formData.protocolOfficialMobile : '',
+      // ID 61: Number of accredited protection
+      "input_61": formData.requiresProtocolCoordination === 'Yes' ? formData.protocolPersonnelCount : '',
+      // ID 62: Any advance security requirements
+      "input_62": formData.requiresProtocolCoordination === 'Yes' ? formData.protocolSecurityRequirements : '',
       // ID 36: Will you require on-site parking?
-      "input_36": formData.parkingRequirement === 'Yes' && formData.vehicleRegistration
-        ? `Yes (Vehicle: ${formData.vehicleMakeModel}, Reg: ${formData.vehicleRegistration})`
-        : formData.parkingRequirement,
+      "input_36": formData.parkingRequirement,
+      // ID 63: Vehicle make and model
+      "input_63": formData.parkingRequirement === 'Yes' ? formData.vehicleMakeModel : '',
+      // ID 64: Vehicle registration number
+      "input_64": formData.parkingRequirement === 'Yes' ? formData.vehicleRegistration : '',
       // ID 37: Driver’s Full Name and Mobile Number (Where applicable)
       "input_37": formData.driverNameAndMobile,
       // ID 38: Emergency Contact Full Name
