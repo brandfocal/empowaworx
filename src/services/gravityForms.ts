@@ -4,7 +4,7 @@ export interface SubmissionResponse {
 }
 
 export const submitToGravityForm = async (
-  formType: 'general' | 'client' | 'partnership' | 'talent' | 'newsletter',
+  formType: 'general' | 'client' | 'partnership' | 'talent' | 'newsletter' | 'legacy-vip',
   fieldData: Record<string, any>
 ): Promise<SubmissionResponse> => {
   const isDev = import.meta.env.DEV;

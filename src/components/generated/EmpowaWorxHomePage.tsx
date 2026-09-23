@@ -2209,7 +2209,7 @@ export const EmpowaWorxHomePage = () => {
               <h3 className="text-3xl md:text-5xl font-bold text-white leading-[0.92] tracking-[-0.04em] mb-5" style={{
                 textShadow: '0 2px 24px rgba(0,0,0,0.4)'
               }}>{honoree.name}</h3>
-              <a href={honoree.id === 'lh1' ? '/legacy#felicia' : honoree.id === 'lh2' ? '/legacy#kani' : '/legacy#maponya'} className="inline-flex items-center gap-2 border-b border-[#FC3637]/40 pb-0.5 group-hover:border-[#FC3637] transition-colors cursor-pointer">
+              <a href={honoree.id === 'lh1' ? '/legacy-events#felicia' : honoree.id === 'lh2' ? '/legacy-events#kani' : '/legacy-events#maponya'} className="inline-flex items-center gap-2 border-b border-[#FC3637]/40 pb-0.5 group-hover:border-[#FC3637] transition-colors cursor-pointer">
                 <span className="text-[12px] font-semibold text-[#FC3637] uppercase tracking-[0.14em]">Read Legacy</span>
                 <ArrowUpRight size={13} className="text-[#FC3637] arrow-hover-slide" />
               </a>

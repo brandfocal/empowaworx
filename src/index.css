@@ -467,3 +467,16 @@ img.broken-image-fallback {
 .cta-secondary-dark-border:hover span {
   color: #ffffff;
 }
+
+/* Ensure date picker indicator icons in dark inputs are bright and clearly visible */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  filter: brightness(0) invert(1) drop-shadow(0 0 3px rgba(252, 54, 55, 0.8));
+}

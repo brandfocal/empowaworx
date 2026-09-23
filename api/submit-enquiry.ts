@@ -26,7 +26,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Send fieldData directly as the options on the Gravity Forms side use 'and' instead of '&', matching the frontend.
 
-    // Dynamically resolve form IDs depending on the submitted formType
     let formId = process.env.GF_FORM_ID_WEBSITE_ENQUIRY || '1';
     if (formType === 'client') {
       formId = process.env.GF_FORM_ID_CLIENT_ENQUIRY || '2';
@@ -36,6 +35,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       formId = process.env.GF_FORM_ID_TALENT_APPLICATION || '4';
     } else if (formType === 'newsletter') {
       formId = process.env.GF_FORM_ID_NEWSLETTER || '5';
+    } else if (formType === 'legacy-vip') {
+      formId = process.env.GF_FORM_ID_LEGACY_VIP || '6';
     }
 
     const targetUrl = `${wpUrl}/wp-json/gf/v2/forms/${formId}/submissions`;

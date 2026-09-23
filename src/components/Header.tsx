@@ -34,13 +34,13 @@ export const NAV_ITEMS: NavItem[] = [
     ]
   },
   { id: 'platforms', label: 'Proprietary Platforms', href: '/platforms' },
-  { id: 'legacy', label: 'Legacy Events', href: '/legacy' },
+  { id: 'legacy', label: 'Legacy Events', href: '/legacy-events' },
   { id: 'gallery', label: 'Media & Gallery', href: '/gallery' },
   { id: 'upcoming', label: 'Upcoming Events', href: '/upcoming' },
   { id: 'careers', label: 'Careers', href: '/careers' },
 ];
 
-const VALID_PATHS = ['/about', '/platforms', '/advisory-trust', '/advisory-marketing', '/advisory-comms', '/advisory-brand', '/advisory-esg', '/advisory-digital', '/advisory-influence', '/advisory-influencer', '/advisory-ecosystem', '/legacy', '/gallery', '/careers', '/upcoming', '/contact'];
+const VALID_PATHS = ['/about', '/platforms', '/advisory-trust', '/advisory-marketing', '/advisory-comms', '/advisory-brand', '/advisory-esg', '/advisory-digital', '/advisory-influence', '/advisory-influencer', '/advisory-ecosystem', '/legacy-events', '/legacy', '/gallery', '/careers', '/upcoming', '/contact'];
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);

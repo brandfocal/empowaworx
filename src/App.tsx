@@ -8,6 +8,7 @@ const StrategicCommunicationsPage = lazy(() => import('./components/generated/St
 const BrandExperiencePage = lazy(() => import('./components/generated/BrandExperiencePage').then(m => ({ default: m.BrandExperiencePage })));
 const MediaGalleryPage = lazy(() => import('./components/generated/MediaGalleryPage').then(m => ({ default: m.MediaGalleryPage })));
 const LegacyEventsPage = lazy(() => import('./components/generated/LegacyEventsPage').then(m => ({ default: m.LegacyEventsPage })));
+const VipLegacyRecognitionPage = lazy(() => import('./components/generated/VipLegacyRecognitionPage').then(m => ({ default: m.VipLegacyRecognitionPage })));
 const CareersPage = lazy(() => import('./components/generated/CareersPage').then(m => ({ default: m.CareersPage })));
 const UpcomingEventsPage = lazy(() => import('./components/generated/UpcomingEventsPage').then(m => ({ default: m.UpcomingEventsPage })));
 const ESGAdvisoryPage = lazy(() => import('./components/generated/ESGAdvisoryPage').then(m => ({ default: m.ESGAdvisoryPage })));
@@ -79,6 +80,7 @@ function App() {
         '/advisory-influence',
         '/advisory-ecosystem',
         '/gallery',
+        '/legacy-events',
         '/legacy',
         '/careers',
         '/upcoming',
@@ -204,8 +206,10 @@ function App() {
           <EcosystemBuildingPage />
         ) : currentPath.startsWith('/gallery') ? (
           <MediaGalleryPage />
-        ) : currentPath.startsWith('/legacy') ? (
+        ) : currentPath.startsWith('/legacy-events') ? (
           <LegacyEventsPage />
+        ) : currentPath.startsWith('/legacy') ? (
+          <VipLegacyRecognitionPage />
         ) : currentPath.startsWith('/careers') ? (
           <CareersPage />
         ) : currentPath.startsWith('/upcoming') ? (
