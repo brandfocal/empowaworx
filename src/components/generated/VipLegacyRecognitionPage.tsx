@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   ShieldCheck,
@@ -40,10 +40,52 @@ const TICKER_ITEMS = [
 ];
 
 export const VipLegacyRecognitionPage: React.FC = () => {
+  // --- Page Title, Meta Tags & SEO Setup ---
+  useEffect(() => {
+    const pageTitle = 'VIP Legacy Recognition Honoring Dr David Molapo';
+    const pageDesc = 'EmpowaWorx and The Speakers Firm invite you to an exclusive VIP recognition ceremony honouring the enduring leadership, cultural impact, and generational footprint of Dr David Molapo.';
+    const ogImgUrl = `${window.location.origin}/Dr-David-Molapo-legacy.jpg`;
+    const canonicalUrl = `${window.location.origin}/vip-legacy-recognition-honoring-dr-david-molapo`;
+
+    document.title = pageTitle;
+
+    // Helper to update or create meta tags
+    const updateOrCreateMeta = (attrName: string, attrVal: string, content: string) => {
+      let meta = document.querySelector(`meta[${attrName}="${attrVal}"]`);
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute(attrName, attrVal);
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', content);
+    };
+
+    updateOrCreateMeta('name', 'description', pageDesc);
+    updateOrCreateMeta('property', 'og:title', pageTitle);
+    updateOrCreateMeta('property', 'og:description', pageDesc);
+    updateOrCreateMeta('property', 'og:image', ogImgUrl);
+    updateOrCreateMeta('property', 'og:image:secure_url', ogImgUrl);
+    updateOrCreateMeta('property', 'og:image:type', 'image/jpeg');
+    updateOrCreateMeta('property', 'og:url', canonicalUrl);
+    updateOrCreateMeta('property', 'og:type', 'website');
+    updateOrCreateMeta('name', 'twitter:card', 'summary_large_image');
+    updateOrCreateMeta('name', 'twitter:title', pageTitle);
+    updateOrCreateMeta('name', 'twitter:description', pageDesc);
+    updateOrCreateMeta('name', 'twitter:image', ogImgUrl);
+
+    // If navigated via /legacy, smoothly replace address bar path without reload
+    if (window.location.pathname === '/legacy' || window.location.pathname === '/legacy/') {
+      window.history.replaceState(null, '', '/vip-legacy-recognition-honoring-dr-david-molapo');
+    }
+
+    return () => {
+      document.title = 'EmpowaWorx';
+    };
+  }, []);
+
   // --- Form State ---
   const [formData, setFormData] = useState({
     // Section 1: Invitation Verification
-    invitationRefNumber: '',
     sharedByName: '',
     sharedByOrgOrRelationship: '',
     sharedByNotes: '',
@@ -230,12 +272,9 @@ export const VipLegacyRecognitionPage: React.FC = () => {
 
     setIsSubmitting(true);
     const generatedRef = `VIP-DM26-${Math.floor(1000 + Math.random() * 9000)}`;
-    const finalRef = formData.invitationRefNumber.trim() ? formData.invitationRefNumber.trim() : generatedRef;
 
     // Gravity Forms (Form ID: 6) Field Mappings:
     const payload = {
-      // ID 1: Invitation Reference Number
-      "input_1": finalRef,
       // ID 3: Who shared this invitation with you?
       "input_3": formData.sharedByName,
       // ID 4: Their organisation or relationship to the event
@@ -344,7 +383,7 @@ export const VipLegacyRecognitionPage: React.FC = () => {
       const response = await submitToGravityForm('legacy-vip', payload);
 
       if (response.isSuccess) {
-        setSubmissionRef(finalRef);
+        setSubmissionRef(generatedRef);
         setIsSuccess(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
@@ -352,7 +391,7 @@ export const VipLegacyRecognitionPage: React.FC = () => {
       }
     } catch (err) {
       console.error(err);
-      setSubmissionRef(finalRef);
+      setSubmissionRef(generatedRef);
       setIsSuccess(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } finally {
@@ -570,7 +609,7 @@ export const VipLegacyRecognitionPage: React.FC = () => {
                   <p className="text-sm font-semibold text-[#1E1E1E]">
                     <span className="text-[#1E1E1E]/60">Deadline:</span> <span className="text-[#FC3637]">Friday, 30 Oct 2026</span>
                   </p>
-                  <p className="text-[11px] text-[#1E1E1E]/50">Register: www.empowaworx.co.za/legacy</p>
+                  <p className="text-[11px] text-[#1E1E1E]/50">Register: www.empowaworx.co.za/vip-legacy-recognition-honoring-dr-david-molapo</p>
                 </div>
               </div>
 
@@ -715,20 +754,6 @@ export const VipLegacyRecognitionPage: React.FC = () => {
                 </div>
 
                 <div className="space-y-5">
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
-                      Invitation Reference Number
-                    </label>
-                    <input
-                      type="text"
-                      name="invitationRefNumber"
-                      value={formData.invitationRefNumber}
-                      onChange={handleChange}
-                      placeholder="Enter the reference number reflected on your invitation, if applicable"
-                      className="w-full px-4 py-3 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-sm text-white placeholder-white/30 outline-none transition-colors"
-                    />
-                  </div>
-
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">

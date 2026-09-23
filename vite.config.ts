@@ -18,4 +18,13 @@ export default defineConfig({
       overlay: false,
     },
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        vipLegacy: path.resolve(__dirname, 'vip-legacy-recognition-honoring-dr-david-molapo/index.html'),
+        legacy: path.resolve(__dirname, 'legacy/index.html'),
+      },
+    },
+  },
 });

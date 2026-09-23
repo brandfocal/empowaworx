@@ -81,6 +81,8 @@ function App() {
         '/advisory-ecosystem',
         '/gallery',
         '/legacy-events',
+        '/vip-legacy-recognition-honoring-dr-david-molapo',
+        '/vip-legacy-recognition-honouring-dr-david-molapo',
         '/legacy',
         '/careers',
         '/upcoming',
@@ -208,7 +210,9 @@ function App() {
           <MediaGalleryPage />
         ) : currentPath.startsWith('/legacy-events') ? (
           <LegacyEventsPage />
-        ) : currentPath.startsWith('/legacy') ? (
+        ) : currentPath.startsWith('/vip-legacy-recognition-honoring-dr-david-molapo') ||
+            currentPath.startsWith('/vip-legacy-recognition-honouring-dr-david-molapo') ||
+            currentPath.startsWith('/legacy') ? (
           <VipLegacyRecognitionPage />
         ) : currentPath.startsWith('/careers') ? (
           <CareersPage />

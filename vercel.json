@@ -10,7 +10,23 @@
       ]
     }
   ],
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/legacy",
+      "destination": "/vip-legacy-recognition-honoring-dr-david-molapo",
+      "permanent": true
+    }
+  ],
   "rewrites": [
+    {
+      "source": "/vip-legacy-recognition-honoring-dr-david-molapo",
+      "destination": "/vip-legacy-recognition-honoring-dr-david-molapo/index.html"
+    },
+    {
+      "source": "/vip-legacy-recognition-honouring-dr-david-molapo",
+      "destination": "/vip-legacy-recognition-honoring-dr-david-molapo/index.html"
+    },
     { "source": "/:path*", "destination": "/" }
   ]
 }

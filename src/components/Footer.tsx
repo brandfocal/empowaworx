@@ -135,7 +135,7 @@ export const Footer = () => {
                 { label: 'Proprietary Platforms', href: '/platforms' },
                 { label: 'Media & Gallery', href: '/gallery' },
                 { label: 'Legacy Events', href: '/legacy-events' },
-                { label: 'VIP Recognition (Dr David Molapo)', href: '/legacy' },
+                { label: 'VIP Recognition (Dr David Molapo)', href: '/vip-legacy-recognition-honoring-dr-david-molapo' },
                 { label: 'Careers', href: '/careers' },
                 { label: 'Upcoming Events', href: '/upcoming' },
                 { label: 'Contact Us', href: '/contact' }
