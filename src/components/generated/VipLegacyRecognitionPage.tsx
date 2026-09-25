@@ -83,21 +83,6 @@ export const VipLegacyRecognitionPage: React.FC = () => {
     };
   }, []);
 
-  // --- Smooth scroll to top of success block on successful submission ---
-  useEffect(() => {
-    if (isSuccess) {
-      const timer = setTimeout(() => {
-        const el = document.getElementById('success-block') || document.getElementById('registration-form');
-        if (el) {
-          const yOffset = -90;
-          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
-        }
-      }, 50);
-      return () => clearTimeout(timer);
-    }
-  }, [isSuccess]);
-
   // --- Form State ---
   const [formData, setFormData] = useState({
     // Section 1: Invitation Verification
@@ -201,6 +186,21 @@ export const VipLegacyRecognitionPage: React.FC = () => {
   const [submissionRef, setSubmissionRef] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [copiedRef, setCopiedRef] = useState(false);
+
+  // --- Smooth scroll to top of success block on successful submission ---
+  useEffect(() => {
+    if (isSuccess) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById('success-block') || document.getElementById('registration-form');
+        if (el) {
+          const yOffset = -90;
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        }
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isSuccess]);
 
   // Field change handler
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
