@@ -83,6 +83,21 @@ export const VipLegacyRecognitionPage: React.FC = () => {
     };
   }, []);
 
+  // --- Smooth scroll to top of success block on successful submission ---
+  useEffect(() => {
+    if (isSuccess) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById('success-block') || document.getElementById('registration-form');
+        if (el) {
+          const yOffset = -90;
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        }
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isSuccess]);
+
   // --- Form State ---
   const [formData, setFormData] = useState({
     // Section 1: Invitation Verification
@@ -409,7 +424,6 @@ export const VipLegacyRecognitionPage: React.FC = () => {
       if (response.isSuccess) {
         setSubmissionRef(generatedRef);
         setIsSuccess(true);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         setErrorMessage(response.message || 'Submission encountered an issue. Please try again.');
       }
@@ -417,7 +431,6 @@ export const VipLegacyRecognitionPage: React.FC = () => {
       console.error(err);
       setSubmissionRef(generatedRef);
       setIsSuccess(true);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } finally {
       setIsSubmitting(false);
     }
@@ -655,14 +668,15 @@ export const VipLegacyRecognitionPage: React.FC = () => {
         </section>
 
         {/* --- FORM OR SUCCESS CONFIRMATION MODAL --- */}
-        <section id="registration-form" className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 my-16">
+        <section id="registration-form" className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 my-16 scroll-mt-24">
           {isSuccess ? (
             /* SUCCESS CONFIRMATION DISPLAY */
             <motion.div
+              id="success-block"
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="rounded-[2px] bg-[#141414] border border-[#FC3637]/50 border-t-4 border-t-[#FC3637] p-8 sm:p-14 text-center space-y-6 shadow-2xl"
+              className="rounded-[2px] bg-[#141414] border border-[#FC3637]/50 border-t-4 border-t-[#FC3637] p-8 sm:p-14 text-center space-y-6 shadow-2xl scroll-mt-24"
             >
               <div className="w-16 h-16 mx-auto rounded-[2px] bg-[#FC3637]/10 border border-[#FC3637] flex items-center justify-center text-[#FC3637]">
                 <CheckCircle2 className="w-8 h-8" />

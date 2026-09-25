@@ -222,11 +222,6 @@ const FACULTY_GROUPS: FacultyGroup[] = [{
     description: 'Bonnie Maponya is an organisational performance and programme leadership executive specialising in strategic execution, programme governance, operational excellence, stakeholder management and organisational effectiveness. She partners with organisations to strengthen execution capability, optimise operating performance, enhance leadership delivery and build resilient systems that transform strategy into measurable business outcomes. Her work enables organisations to improve organisational agility, elevate stakeholder value and deliver sustainable impact through disciplined execution.',
     image: '/team_faculty/Bonnie-Maponya.jpg'
   }, {
-    name: 'Doric Sithole',
-    role: 'Managing Executive – EmpowaHer™ | The Future Is Female™',
-    description: 'Doric Sithole is a seasoned communications, marketing, and leadership-development executive specialising in strategic communications, brand management, change management, and executive coaching. She partners with organisations to build influential brands, deliver high-impact leadership development programmes, and unlock human potential through authentic storytelling. As Managing Executive of EmpowaHer™ – The Future Is Female™, she serves as a passionate champion for women and emerging entrepreneurs, leveraging over 15 years of diverse leadership experience to drive measurable commercial and societal impact.',
-    image: '/Doric-Sithole.jpg'
-  }, {
     name: 'Sechaba Motsieloa CM(SA)',
     role: 'Senior Marketing Strategist & Managing Executive – EmpowaGrowth',
     description: 'Sechaba Motsieloa CM(SA) is a strategic marketing, reputation and growth advisor specialising in brand strategy, executive positioning, stakeholder engagement, strategic communications and market growth. He helps organisations strengthen competitive positioning, build trusted brands, enhance corporate reputation and align marketing, communications and stakeholder strategies with business transformation, organisational performance and sustainable commercial growth.',
