@@ -12,8 +12,6 @@ import {
   Phone,
   Video,
   Printer,
-  Copy,
-  Check,
   ArrowRight,
   ArrowUpRight
 } from 'lucide-react';
@@ -185,7 +183,6 @@ export const VipLegacyRecognitionPage: React.FC = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [submissionRef, setSubmissionRef] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [copiedRef, setCopiedRef] = useState(false);
 
   // --- Smooth scroll to top of success block on successful submission ---
   useEffect(() => {
@@ -433,14 +430,6 @@ export const VipLegacyRecognitionPage: React.FC = () => {
       setIsSuccess(true);
     } finally {
       setIsSubmitting(false);
-    }
-  };
-
-  const copyRefToClipboard = () => {
-    if (submissionRef) {
-      navigator.clipboard.writeText(submissionRef);
-      setCopiedRef(true);
-      setTimeout(() => setCopiedRef(false), 2500);
     }
   };
 
@@ -692,26 +681,6 @@ export const VipLegacyRecognitionPage: React.FC = () => {
                 <p className="text-sm sm:text-base text-white/70 max-w-xl mx-auto">
                   Thank you, <span className="text-white font-semibold">{formData.title} {formData.firstName} {formData.surname}</span>. Your VIP registration details have been securely recorded by the event office.
                 </p>
-              </div>
-
-              {/* Accreditation Reference Box */}
-              <div className="max-w-md mx-auto p-4 rounded-[2px] bg-black/80 border border-white/10 flex items-center justify-between gap-4">
-                <div className="text-left">
-                  <div className="text-[10px] uppercase tracking-wider text-white/40">
-                    Provisional Accreditation Ref
-                  </div>
-                  <div className="text-xl font-mono font-bold text-white tracking-wider">
-                    {submissionRef}
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={copyRefToClipboard}
-                  className="px-3 py-1.5 rounded-[2px] bg-white/10 hover:bg-white/20 text-xs font-semibold text-white/90 inline-flex items-center gap-1.5 transition-colors"
-                >
-                  {copiedRef ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Copy className="w-3.5 h-3.5" />}
-                  {copiedRef ? 'Copied' : 'Copy'}
-                </button>
               </div>
 
               {/* Protocol Note */}
