@@ -1093,10 +1093,10 @@ export const EmpowaWorxHomePage = () => {
   const [bannerIndex, setBannerIndex] = React.useState(0);
   const banners = React.useMemo(() => [
     {
-      src: '/empowawomen-desktop.jpg',
-      url: 'https://www.quicket.co.za/events/344315-empowawomen-leadership-summit-2026/#/',
-      alt: 'EmpowaWomen Leadership Summit',
-      caption: 'EmpowaWomen™ Leadership Summit'
+      src: '/EmpowaHer-Leadership-Summit2026.jpg',
+      url: 'https://www.empowaher.co.za/nomination',
+      alt: 'EmpowaHER Leadership Summit 2026',
+      caption: 'EmpowaHER™ Leadership Summit 2026'
     },
     {
       src: '/empowamen-banner.jpg',
