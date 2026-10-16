@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Star, Menu, X, Phone, Mail, MapPin, Linkedin, Instagram, Twitter, Plus, Minus, ZoomIn, ExternalLink, Facebook, Youtube, Play } from 'lucide-react';
+import { ArrowUpRight, Star, Menu, X, Phone, Mail, MapPin, Linkedin, Instagram, Twitter, Plus, Minus, ZoomIn, ExternalLink, Facebook, Youtube, Play, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AfricaWatermark } from '../AfricaWatermark';
 import { Header } from '@/components/Header';
@@ -1379,7 +1379,7 @@ export const EmpowaWorxHomePage = () => {
               delay: 0.7,
               duration: 0.6,
               ease: EASE
-            }} className="flex flex-wrap items-center gap-6 md:gap-9">
+            }} className="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-8">
               <a href="#contact" className="cta-primary group">
                 <span>Partner With Us</span>
                 <div className="cta-icon-container">
@@ -1388,6 +1388,17 @@ export const EmpowaWorxHomePage = () => {
               </a>
               <a href="#advisory" className="cta-secondary group">
                 <span>Explore Services</span>
+              </a>
+              <a
+                href="/company_profile/Empowaworx%20Company%20Profile%202026%2002.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                download="Empowaworx Company Profile 2026.pdf"
+                className="cta-secondary group inline-flex items-center gap-2.5 border border-white/20 hover:border-[#FC3637] hover:text-[#FC3637] transition-all duration-300"
+              >
+                <Download size={14} className="text-[#FC3637] group-hover:translate-y-0.5 transition-transform" />
+                <span>Company Profile</span>
+                <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/10 text-white/60">PDF</span>
               </a>
             </motion.div>
 
@@ -1526,9 +1537,20 @@ export const EmpowaWorxHomePage = () => {
                 </div>)}
               </div>
 
-              <div className="flex items-center gap-6">
-                <a href="#about" className="cta-secondary cta-secondary-dark-border group">
+              <div className="flex flex-wrap items-center gap-4 md:gap-6">
+                <a href="/about" className="cta-secondary cta-secondary-dark-border group">
                   <span>Who We Are</span>
+                </a>
+                <a
+                  href="/company_profile/Empowaworx%20Company%20Profile%202026%2002.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download="Empowaworx Company Profile 2026.pdf"
+                  className="inline-flex items-center gap-2.5 px-5 py-3 border border-[#1E1E1E]/20 text-[#1E1E1E] hover:border-[#FC3637] hover:text-[#FC3637] text-[13px] font-semibold tracking-tight transition-all duration-300 group"
+                >
+                  <Download size={15} className="text-[#FC3637] group-hover:translate-y-0.5 transition-transform" />
+                  <span>Download Company Profile</span>
+                  <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-black/5 text-[#1E1E1E]/60">PDF</span>
                 </a>
               </div>
             </div>

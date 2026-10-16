@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Linkedin, Instagram, Twitter, Facebook, Youtube, CheckCircle, AlertCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Linkedin, Instagram, Twitter, Facebook, Youtube, CheckCircle, AlertCircle, Download } from 'lucide-react';
 import { submitToGravityForm } from '../services/gravityForms';
 
 const OFFICE_CITIES: string[] = [];
@@ -146,6 +146,20 @@ export const Footer = () => {
                   {link.label}
                 </a>
               ))}
+              <a
+                href="/company_profile/Empowaworx%20Company%20Profile%202026%2002.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                download="Empowaworx Company Profile 2026.pdf"
+                className="footer-nav-link text-[13px] font-medium transition-colors duration-200 inline-flex items-center gap-2 group pt-1"
+                style={{
+                  color: 'rgba(255,255,255,0.85)'
+                }}
+              >
+                <Download size={13} className="text-[#FC3637] group-hover:translate-y-0.5 transition-transform" />
+                <span className="group-hover:text-white transition-colors">Company Profile</span>
+                <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/10 text-white/60">PDF</span>
+              </a>
             </div>
           </div>
 

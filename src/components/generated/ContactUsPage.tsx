@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
-import { MapPin, Mail, Phone, ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Lock, AlertCircle, User, Building2, Briefcase, CheckCircle, RotateCcw } from 'lucide-react';
+import { MapPin, Mail, Phone, ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Lock, AlertCircle, User, Building2, Briefcase, CheckCircle, RotateCcw, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -923,23 +923,51 @@ export const ContactUsPage = () => {
             </motion.span>
           </h1>
 
-          <motion.button initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.6,
-            delay: 0.9
-          }} whileHover={{
-            scale: 1.05
-          }} whileTap={{
-            scale: 0.95
-          }} onClick={() => document.getElementById('contact-form-section')?.scrollIntoView({ behavior: 'smooth' })} className="group flex items-center gap-4 bg-[#FC3637] text-white font-black text-[13px] tracking-widest px-8 md:px-10 py-4 md:py-5 rounded-sm hover:bg-[#e02d2d] transition-all duration-300 uppercase shadow-2xl shadow-[#FC3637]/30 min-h-[52px]">
-            <span>Explore Partnerships</span>
-            <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
-          </motion.button>
+          <div className="flex flex-wrap items-center gap-4">
+            <motion.button initial={{
+              opacity: 0,
+              y: 20
+            }} animate={{
+              opacity: 1,
+              y: 0
+            }} transition={{
+              duration: 0.6,
+              delay: 0.9
+            }} whileHover={{
+              scale: 1.05
+            }} whileTap={{
+              scale: 0.95
+            }} onClick={() => document.getElementById('contact-form-section')?.scrollIntoView({ behavior: 'smooth' })} className="group flex items-center gap-4 bg-[#FC3637] text-white font-black text-[13px] tracking-widest px-8 md:px-10 py-4 md:py-5 rounded-sm hover:bg-[#e02d2d] transition-all duration-300 uppercase shadow-2xl shadow-[#FC3637]/30 min-h-[52px]">
+              <span>Explore Partnerships</span>
+              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
+            </motion.button>
+
+            <motion.a
+              href="/company_profile/Empowaworx%20Company%20Profile%202026%2002.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Empowaworx Company Profile 2026.pdf"
+              initial={{
+                opacity: 0,
+                y: 20
+              }} animate={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                duration: 0.6,
+                delay: 1.0
+              }} whileHover={{
+                scale: 1.05
+              }} whileTap={{
+                scale: 0.95
+              }}
+              className="group flex items-center gap-3 bg-white/10 hover:bg-white/15 text-white font-bold text-[13px] tracking-widest px-7 md:px-8 py-4 md:py-5 rounded-sm border border-white/20 hover:border-[#FC3637] transition-all duration-300 uppercase min-h-[52px]"
+            >
+              <Download className="w-4 h-4 text-[#FC3637] group-hover:translate-y-0.5 transition-transform" />
+              <span>Company Profile</span>
+              <span className="text-[10px] tracking-normal font-bold px-1.5 py-0.5 bg-white/10 text-white/70 rounded">PDF</span>
+            </motion.a>
+          </div>
         </div>
 
         <motion.div initial={{
@@ -1110,6 +1138,24 @@ export const ContactUsPage = () => {
                     </div>
                   </motion.div>
                 </AnimatePresence>
+
+                <div className="mt-8 pt-6 border-t border-black/10">
+                  <p className="text-[11px] font-black tracking-[0.2em] uppercase text-[#FC3637] mb-2">Corporate Credentials</p>
+                  <p className="text-[13px] text-[#444444] leading-snug mb-4">
+                    Preparing an RFP or internal presentation? Download our official credentials and capability overview.
+                  </p>
+                  <a 
+                    href="/company_profile/Empowaworx%20Company%20Profile%202026%2002.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download="Empowaworx Company Profile 2026.pdf"
+                    className="inline-flex items-center gap-2.5 bg-white border border-[#111111]/15 px-4 py-2.5 text-[12px] font-bold text-[#111111] hover:border-[#FC3637] hover:text-[#FC3637] shadow-sm transition-all duration-200 group"
+                  >
+                    <Download size={14} className="text-[#FC3637] group-hover:translate-y-0.5 transition-transform" />
+                    <span>Company Profile</span>
+                    <span className="text-[10px] font-bold px-1.5 py-0.5 bg-[#FC3637]/10 text-[#FC3637] rounded">PDF</span>
+                  </a>
+                </div>
               </div>
             </motion.div>
 
@@ -1124,9 +1170,19 @@ export const ContactUsPage = () => {
               {/* Mobile heading */}
               <div className="md:hidden mb-8">
                 <span className="text-[#FC3637] text-[11px] font-black tracking-[0.3em] uppercase block mb-4">REACH OUT</span>
-                <h2 className="text-[#111111] font-semibold text-4xl leading-[0.9] tracking-tighter">
+                <h2 className="text-[#111111] font-semibold text-4xl leading-[0.9] tracking-tighter mb-4">
                   How can we help you?
                 </h2>
+                <a 
+                  href="/company_profile/Empowaworx%20Company%20Profile%202026%2002.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download="Empowaworx Company Profile 2026.pdf"
+                  className="inline-flex items-center gap-2 text-[12px] font-bold text-[#111111] bg-white border border-black/10 px-3.5 py-2 hover:border-[#FC3637] transition-colors"
+                >
+                  <Download size={13} className="text-[#FC3637]" />
+                  <span>Download Company Profile (PDF)</span>
+                </a>
               </div>
 
               {/* Tab Bar — horizontally scrollable on mobile */}

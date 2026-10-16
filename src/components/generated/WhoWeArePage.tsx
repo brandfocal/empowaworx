@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
-import { Menu, X, Linkedin, Instagram, Twitter, Facebook, Youtube, ArrowUpRight, Star, ShieldCheck, BadgeCheck, Megaphone, Users, Landmark, TrendingUp, BarChart3, Leaf } from 'lucide-react';
+import { Menu, X, Linkedin, Instagram, Twitter, Facebook, Youtube, ArrowUpRight, Star, ShieldCheck, BadgeCheck, Megaphone, Users, Landmark, TrendingUp, BarChart3, Leaf, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AfricaWatermark } from '../AfricaWatermark';
 import { Header } from '@/components/Header';
@@ -580,6 +580,17 @@ const Hero = () => {
               }}
             >
               <span>Meet The Team</span>
+            </a>
+            <a
+              href="/company_profile/Empowaworx%20Company%20Profile%202026%2002.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Empowaworx Company Profile 2026.pdf"
+              className="cta-secondary group inline-flex items-center gap-2.5 border border-white/20 hover:border-[#FC3637] hover:text-[#FC3637] transition-all duration-300"
+            >
+              <Download size={14} className="text-[#FC3637] group-hover:translate-y-0.5 transition-transform" />
+              <span>Company Profile</span>
+              <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/10 text-white/60">PDF</span>
             </a>
           </motion.div>
 
@@ -1194,6 +1205,17 @@ const CTACloser = () => {
         <div className="cta-icon-container">
           <ArrowUpRight size={14} className="text-[#1E1E1E]" />
         </div>
+      </a>
+      <a
+        href="/company_profile/Empowaworx%20Company%20Profile%202026%2002.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        download="Empowaworx Company Profile 2026.pdf"
+        className="h-[56px] md:h-[60px] min-w-[180px] md:min-w-[200px] border border-[#1E1E1E]/20 text-[#1E1E1E] hover:border-[#FC3637] hover:text-[#FC3637] flex items-center justify-center gap-3 px-6 font-semibold text-sm transition-all duration-300 group"
+      >
+        <Download size={16} className="text-[#FC3637] group-hover:translate-y-0.5 transition-transform" />
+        <span>Company Profile</span>
+        <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-black/5 text-[#1E1E1E]/60">PDF</span>
       </a>
     </FadeSlideUp>
   </section>;
