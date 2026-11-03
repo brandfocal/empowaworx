@@ -13,7 +13,8 @@ import {
   Video,
   Printer,
   ArrowRight,
-  ArrowUpRight
+  ArrowUpRight,
+  UserPlus
 } from 'lucide-react';
 import { Header } from '../Header';
 import { Footer } from '../Footer';
@@ -128,7 +129,23 @@ export const VipLegacyRecognitionPage: React.FC = () => {
     partialAttendanceTimes: '',
     virtualLivestreamEmail: '',
 
-    // Section 7: Accompanying & Support Personnel
+    // Section 7: Plus One & Accompanying Personnel
+    hasPlusOne: 'No',
+    plusOneTitle: '',
+    plusOneTitleOther: '',
+    plusOneFirstName: '',
+    plusOneSurname: '',
+    plusOneBadgeName: '',
+    plusOneEmail: '',
+    plusOneMobile: '',
+    plusOneOrganisation: '',
+    plusOneDesignation: '',
+    plusOneDietary: 'None',
+    plusOneDietaryOther: '',
+    plusOneDietaryDetails: '',
+    plusOneAccessibility: 'None',
+    plusOneAccessibilityOther: '',
+
     hasSupportPersonnel: 'No',
     supportFullName: '',
     supportRole: '',
@@ -266,6 +283,18 @@ export const VipLegacyRecognitionPage: React.FC = () => {
       document.getElementById('section-6')?.scrollIntoView({ behavior: 'smooth' });
       return;
     }
+    if (formData.hasPlusOne === 'Yes') {
+      if (!formData.plusOneFirstName.trim() || !formData.plusOneSurname.trim()) {
+        setErrorMessage('Please provide your Plus One’s First Name and Surname (Section 7).');
+        document.getElementById('section-7')?.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+      if (!formData.plusOneBadgeName.trim()) {
+        setErrorMessage('Please provide the badge name for your Plus One (Section 7).');
+        document.getElementById('section-7')?.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
     if (!formData.emergencyName.trim() || !formData.emergencyRelationship.trim() || !formData.emergencyMobile.trim()) {
       setErrorMessage('Please complete the Emergency Contact details (Section 10).');
       document.getElementById('section-10')?.scrollIntoView({ behavior: 'smooth' });
@@ -357,6 +386,30 @@ export const VipLegacyRecognitionPage: React.FC = () => {
       "input_55": formData.hasSupportPersonnel === 'Yes' ? formData.supportOrg : '',
       // ID 56: Accompanying Personnel reason for access requirement
       "input_56": formData.hasSupportPersonnel === 'Yes' ? formData.supportReason : '',
+      // ID 65: Will you be attending with a Plus One?
+      "input_65": formData.hasPlusOne,
+      // ID 66: Plus One Official Title or Honorific
+      "input_66": formData.hasPlusOne === 'Yes' ? (formData.plusOneTitle === 'Other' && formData.plusOneTitleOther ? `Other: ${formData.plusOneTitleOther}` : formData.plusOneTitle) : '',
+      // ID 67: Plus One First Name(s)
+      "input_67": formData.hasPlusOne === 'Yes' ? formData.plusOneFirstName : '',
+      // ID 68: Plus One Surname
+      "input_68": formData.hasPlusOne === 'Yes' ? formData.plusOneSurname : '',
+      // ID 69: Plus One Name for VIP Accreditation Badge
+      "input_69": formData.hasPlusOne === 'Yes' ? formData.plusOneBadgeName : '',
+      // ID 70: Plus One Email Address
+      "input_70": formData.hasPlusOne === 'Yes' ? formData.plusOneEmail : '',
+      // ID 71: Plus One Mobile Number
+      "input_71": formData.hasPlusOne === 'Yes' ? formData.plusOneMobile : '',
+      // ID 72: Plus One Organisation or Institution
+      "input_72": formData.hasPlusOne === 'Yes' ? formData.plusOneOrganisation : '',
+      // ID 73: Plus One Designation or Role
+      "input_73": formData.hasPlusOne === 'Yes' ? formData.plusOneDesignation : '',
+      // ID 74: Plus One Dietary Requirements
+      "input_74": formData.hasPlusOne === 'Yes' ? (formData.plusOneDietary === 'Other' && formData.plusOneDietaryOther ? `Other: ${formData.plusOneDietaryOther}` : formData.plusOneDietary) : '',
+      // ID 75: Plus One Dietary or Allergy Details
+      "input_75": formData.hasPlusOne === 'Yes' ? formData.plusOneDietaryDetails : '',
+      // ID 76: Plus One Accessibility Requirements
+      "input_76": formData.hasPlusOne === 'Yes' ? (formData.plusOneAccessibility === 'Other' && formData.plusOneAccessibilityOther ? `Other: ${formData.plusOneAccessibilityOther}` : formData.plusOneAccessibility) : '',
       // ID 31: Dietary Requirements
       "input_31": formData.dietary === 'Other' && formData.dietaryOther ? `Other: ${formData.dietaryOther}` : formData.dietary,
       // ID 32: Please provide relevant dietary or allergy details
@@ -681,6 +734,12 @@ export const VipLegacyRecognitionPage: React.FC = () => {
                 <p className="text-sm sm:text-base text-white/70 max-w-xl mx-auto">
                   Thank you, <span className="text-white font-semibold">{formData.title} {formData.firstName} {formData.surname}</span>. Your VIP registration details have been securely recorded by the event office.
                 </p>
+                {formData.hasPlusOne === 'Yes' && formData.plusOneFirstName && (
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[2px] bg-[#FC3637]/10 border border-[#FC3637]/30 text-xs text-[#FC3637] font-medium mt-2">
+                    <UserPlus className="w-4 h-4 shrink-0" />
+                    <span>Plus One Registered: <strong>{formData.plusOneTitle ? `${formData.plusOneTitle} ` : ''}{formData.plusOneFirstName} {formData.plusOneSurname}</strong></span>
+                  </div>
+                )}
               </div>
 
               {/* Protocol Note */}
@@ -1450,101 +1509,369 @@ export const VipLegacyRecognitionPage: React.FC = () => {
                     <div className="w-6 h-[2px] bg-[#FC3637]" />
                     <span className="text-[12px] font-black text-[#FC3637] tracking-[0.2em]">07</span>
                     <h3 className="text-lg sm:text-xl font-bold uppercase tracking-wide text-white">
-                      ACCOMPANYING AND SUPPORT PERSONNEL
+                      PLUS ONE & ACCOMPANYING PERSONNEL
                     </h3>
                   </div>
-                  <span className="text-[11px] text-white/40 uppercase tracking-widest hidden sm:inline">Protocol</span>
+                  <span className="text-[11px] text-white/40 uppercase tracking-widest hidden sm:inline">Guest & Protocol</span>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div className="p-4 rounded-[2px] bg-[#181818] border border-white/10 text-xs text-white/70 leading-relaxed">
-                    This invitation admits one approved guest only. Spouses, partners, executive assistants, representatives, drivers, protection officers and substitute delegates are not automatically included.
+                    Invited VIP guests are welcome to register a Plus One (spouse, partner, or guest) to accompany them to the ceremony. All attending guests and essential support personnel must be accredited in advance for protocol, seating, and venue security.
                   </div>
 
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
-                      Will you be accompanied by an essential protocol, accessibility or security support person? <span className="text-[#FC3637]">*</span>
-                    </label>
-                    <div className="flex gap-4">
-                      {['Yes', 'No'].map(ans => (
-                        <label
-                          key={ans}
-                          className={`flex-1 py-2.5 text-center rounded-[2px] border text-xs sm:text-sm font-semibold cursor-pointer transition-all ${
-                            formData.hasSupportPersonnel === ans
-                              ? 'bg-[#FC3637] border-[#FC3637] text-white'
-                              : 'bg-[#191919] border-white/10 text-white/70 hover:border-white/25'
-                          }`}
-                        >
-                          <input
-                            type="radio"
-                            name="hasSupportPersonnel"
-                            value={ans}
-                            checked={formData.hasSupportPersonnel === ans}
-                            onChange={handleChange}
-                            className="hidden"
-                          />
-                          {ans}
+                  {/* PART A: PLUS ONE REGISTRATION */}
+                  <div className="p-5 rounded-[2px] bg-[#161616] border border-white/10 space-y-5">
+                    <div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <UserPlus className="w-4 h-4 text-[#FC3637]" />
+                        <label className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/90">
+                          Will you be attending with a Plus One (Spouse, Partner or Guest)? <span className="text-[#FC3637]">*</span>
                         </label>
-                      ))}
+                      </div>
+                      <div className="flex gap-4">
+                        {['Yes', 'No'].map(ans => (
+                          <label
+                            key={ans}
+                            className={`flex-1 py-2.5 text-center rounded-[2px] border text-xs sm:text-sm font-semibold cursor-pointer transition-all ${
+                              formData.hasPlusOne === ans
+                                ? 'bg-[#FC3637] border-[#FC3637] text-white'
+                                : 'bg-[#191919] border-white/10 text-white/70 hover:border-white/25'
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="hasPlusOne"
+                              value={ans}
+                              checked={formData.hasPlusOne === ans}
+                              onChange={handleChange}
+                              className="hidden"
+                            />
+                            {ans}
+                          </label>
+                        ))}
+                      </div>
                     </div>
+
+                    {formData.hasPlusOne === 'Yes' && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        className="pt-4 border-t border-white/10 space-y-5"
+                      >
+                        <div className="text-[11px] uppercase font-bold tracking-wider text-[#FC3637] flex items-center gap-2">
+                          <span>✦</span> Plus One Accreditation Details
+                        </div>
+
+                        {/* Title / Honorific */}
+                        <div>
+                          <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
+                            Title / Honorific
+                          </label>
+                          <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-10 gap-2">
+                            {['Dr', 'Prof', 'Adv', 'Judge', 'Rev', 'Pastor', 'Mr', 'Mrs', 'Ms', 'Other'].map(t => (
+                              <label
+                                key={t}
+                                className={`text-center py-2 px-1 rounded-[2px] border text-xs cursor-pointer transition-all ${
+                                  formData.plusOneTitle === t
+                                    ? 'bg-[#FC3637] border-[#FC3637] text-white font-bold'
+                                    : 'bg-[#191919] border-white/10 text-white/70 hover:border-white/25'
+                                }`}
+                              >
+                                <input
+                                  type="radio"
+                                  name="plusOneTitle"
+                                  value={t}
+                                  checked={formData.plusOneTitle === t}
+                                  onChange={handleChange}
+                                  className="hidden"
+                                />
+                                {t}
+                              </label>
+                            ))}
+                          </div>
+                          {formData.plusOneTitle === 'Other' && (
+                            <div className="mt-3">
+                              <input
+                                type="text"
+                                name="plusOneTitleOther"
+                                value={formData.plusOneTitleOther}
+                                onChange={handleChange}
+                                placeholder="Please specify title"
+                                className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                              />
+                            </div>
+                          )}
+                        </div>
+
+                        {/* First Name & Surname */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
+                              Plus One First Name(s) <span className="text-[#FC3637]">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="plusOneFirstName"
+                              value={formData.plusOneFirstName}
+                              onChange={handleChange}
+                              placeholder="First name(s)"
+                              className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
+                              Plus One Surname <span className="text-[#FC3637]">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="plusOneSurname"
+                              value={formData.plusOneSurname}
+                              onChange={handleChange}
+                              placeholder="Surname"
+                              className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Name for VIP Accreditation Badge */}
+                        <div>
+                          <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
+                            Name for VIP Accreditation Badge <span className="text-[#FC3637]">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            name="plusOneBadgeName"
+                            value={formData.plusOneBadgeName}
+                            onChange={handleChange}
+                            placeholder="Exact name to be printed on physical badge (e.g. Mrs Nomsa Khumalo)"
+                            className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                          />
+                        </div>
+
+                        {/* Email & Mobile Number */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
+                              Plus One Email Address
+                            </label>
+                            <input
+                              type="email"
+                              name="plusOneEmail"
+                              value={formData.plusOneEmail}
+                              onChange={handleChange}
+                              placeholder="guest@example.com"
+                              className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
+                              Plus One Mobile Number
+                            </label>
+                            <input
+                              type="tel"
+                              name="plusOneMobile"
+                              value={formData.plusOneMobile}
+                              onChange={handleChange}
+                              placeholder="+27 82 000 0000"
+                              className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Organisation & Designation */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
+                              Organisation or Institution <span className="text-white/40 text-[10px] font-normal">(Optional)</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="plusOneOrganisation"
+                              value={formData.plusOneOrganisation}
+                              onChange={handleChange}
+                              placeholder="e.g. Company or Ministry"
+                              className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
+                              Designation or Role <span className="text-white/40 text-[10px] font-normal">(Optional)</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="plusOneDesignation"
+                              value={formData.plusOneDesignation}
+                              onChange={handleChange}
+                              placeholder="e.g. Director / Partner"
+                              className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Dietary Requirements */}
+                        <div>
+                          <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
+                            Plus One Dietary Requirements
+                          </label>
+                          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
+                            {['None', 'Vegetarian', 'Vegan', 'Halaal', 'Kosher', 'Food Allergy', 'Other'].map(d => (
+                              <label
+                                key={d}
+                                className={`text-center py-2 px-1 rounded-[2px] border text-xs cursor-pointer transition-all ${
+                                  formData.plusOneDietary === d
+                                    ? 'bg-[#FC3637] border-[#FC3637] text-white font-bold'
+                                    : 'bg-[#191919] border-white/10 text-white/70 hover:border-white/25'
+                                }`}
+                              >
+                                <input
+                                  type="radio"
+                                  name="plusOneDietary"
+                                  value={d}
+                                  checked={formData.plusOneDietary === d}
+                                  onChange={handleChange}
+                                  className="hidden"
+                                />
+                                {d}
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Dietary Details */}
+                        <div>
+                          <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
+                            Plus One Dietary or Allergy Details
+                          </label>
+                          <input
+                            type="text"
+                            name="plusOneDietaryDetails"
+                            value={formData.plusOneDietaryDetails}
+                            onChange={handleChange}
+                            placeholder="Please specify any specific food allergies or dietary restrictions"
+                            className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                          />
+                        </div>
+
+                        {/* Accessibility */}
+                        <div>
+                          <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
+                            Plus One Accessibility Requirements
+                          </label>
+                          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+                            {['None', 'Wheelchair Access', 'Assisted Access', 'Hearing Support', 'Visual Support', 'Other'].map(a => (
+                              <label
+                                key={a}
+                                className={`text-center py-2 px-1 rounded-[2px] border text-xs cursor-pointer transition-all ${
+                                  formData.plusOneAccessibility === a
+                                    ? 'bg-[#FC3637] border-[#FC3637] text-white font-bold'
+                                    : 'bg-[#191919] border-white/10 text-white/70 hover:border-white/25'
+                                }`}
+                              >
+                                <input
+                                  type="radio"
+                                  name="plusOneAccessibility"
+                                  value={a}
+                                  checked={formData.plusOneAccessibility === a}
+                                  onChange={handleChange}
+                                  className="hidden"
+                                />
+                                {a}
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
                   </div>
 
-                  {formData.hasSupportPersonnel === 'Yes' && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      className="p-5 rounded-[2px] bg-[#181818] border border-white/10 space-y-4"
-                    >
-                      <div className="text-[11px] uppercase font-bold tracking-wider text-[#FC3637]">
-                        Accompanying Personnel Details
+                  {/* PART B: ESSENTIAL PROTOCOL / SECURITY SUPPORT PERSONNEL */}
+                  <div className="p-5 rounded-[2px] bg-[#161616] border border-white/10 space-y-4">
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 mb-2">
+                        Will you also be accompanied by an essential protocol, accessibility or security support person? <span className="text-[#FC3637]">*</span>
+                      </label>
+                      <div className="flex gap-4">
+                        {['Yes', 'No'].map(ans => (
+                          <label
+                            key={ans}
+                            className={`flex-1 py-2.5 text-center rounded-[2px] border text-xs sm:text-sm font-semibold cursor-pointer transition-all ${
+                              formData.hasSupportPersonnel === ans
+                                ? 'bg-[#FC3637] border-[#FC3637] text-white'
+                                : 'bg-[#191919] border-white/10 text-white/70 hover:border-white/25'
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="hasSupportPersonnel"
+                              value={ans}
+                              checked={formData.hasSupportPersonnel === ans}
+                              onChange={handleChange}
+                              className="hidden"
+                            />
+                            {ans}
+                          </label>
+                        ))}
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <input
-                          type="text"
-                          name="supportFullName"
-                          value={formData.supportFullName}
+                    </div>
+
+                    {formData.hasSupportPersonnel === 'Yes' && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        className="pt-4 border-t border-white/10 space-y-4"
+                      >
+                        <div className="text-[11px] uppercase font-bold tracking-wider text-[#FC3637]">
+                          Accompanying Support Personnel Details
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <input
+                            type="text"
+                            name="supportFullName"
+                            value={formData.supportFullName}
+                            onChange={handleChange}
+                            placeholder="Full name and surname"
+                            className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                          />
+                          <input
+                            type="text"
+                            name="supportRole"
+                            value={formData.supportRole}
+                            onChange={handleChange}
+                            placeholder="Role or designation"
+                            className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                          />
+                          <input
+                            type="tel"
+                            name="supportMobile"
+                            value={formData.supportMobile}
+                            onChange={handleChange}
+                            placeholder="Mobile number"
+                            className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                          />
+                          <input
+                            type="text"
+                            name="supportOrg"
+                            value={formData.supportOrg}
+                            onChange={handleChange}
+                            placeholder="Security or protocol organisation, where applicable"
+                            className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                          />
+                        </div>
+                        <textarea
+                          name="supportReason"
+                          rows={2}
+                          value={formData.supportReason}
                           onChange={handleChange}
-                          placeholder="Full name and surname"
-                          className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
+                          placeholder="Reason for access requirement"
+                          className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none resize-none"
                         />
-                        <input
-                          type="text"
-                          name="supportRole"
-                          value={formData.supportRole}
-                          onChange={handleChange}
-                          placeholder="Role or designation"
-                          className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
-                        />
-                        <input
-                          type="tel"
-                          name="supportMobile"
-                          value={formData.supportMobile}
-                          onChange={handleChange}
-                          placeholder="Mobile number"
-                          className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
-                        />
-                        <input
-                          type="text"
-                          name="supportOrg"
-                          value={formData.supportOrg}
-                          onChange={handleChange}
-                          placeholder="Security or protocol organisation, where applicable"
-                          className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none"
-                        />
-                      </div>
-                      <textarea
-                        name="supportReason"
-                        rows={2}
-                        value={formData.supportReason}
-                        onChange={handleChange}
-                        placeholder="Reason for access requirement"
-                        className="w-full px-4 py-2.5 rounded-[2px] bg-[#1A1A1A] border border-white/10 focus:border-[#FC3637] text-xs text-white placeholder-white/30 outline-none resize-none"
-                      />
-                      <p className="text-[11px] text-white/50 italic">
-                        All accompanying personnel require separate accreditation and written approval.
-                      </p>
-                    </motion.div>
-                  )}
+                        <p className="text-[11px] text-white/50 italic">
+                          All accompanying support personnel require separate accreditation and written approval.
+                        </p>
+                      </motion.div>
+                    )}
+                  </div>
                 </div>
               </div>
 
