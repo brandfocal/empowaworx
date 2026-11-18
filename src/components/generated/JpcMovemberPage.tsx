@@ -132,8 +132,8 @@ const FEATURED_SPEAKERS: FeaturedSpeaker[] = [
     name: 'Mr. Musah Makhunga',
     title: 'CEO, Johannesburg Property Company (JPC)',
     bio: 'Mr. Musah Makhunga serves as the Chief Executive Officer of the Johannesburg Property Company (JPC), a key entity of the City of Johannesburg. As the opening address speaker, he sets the tone for a conference anchored in good governance, mens health, and the vision of a stronger, more accountable Johannesburg.',
-    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
-    imageAlt: 'Professional portrait of an African male executive in business attire'
+    image: '/Musawakhe-Makhunga.jpeg',
+    imageAlt: 'Mr. Musah Makhunga - CEO, Johannesburg Property Company'
   },
   {
     id: 'sechaba-motsieloa',
@@ -151,28 +151,6 @@ const GLOBAL_STYLES = `
   html { scroll-behavior: smooth; }
   .detail-card:hover { border-left-color: #FC3637 !important; }
 `;
-
-function AfricaMark({ light = false }: { light?: boolean }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className="pointer-events-none absolute bottom-0 right-0 h-[68%] w-[42%] opacity-[0.08]"
-      viewBox="0 0 300 420"
-      fill="none"
-    >
-      <path
-        d="M123 9 170 20l35 33 35 11 17 34-14 30 19 37-19 35 8 37-28 38-10 52-35 52-38 58-32-26-4-42-31-35 13-35-20-40 24-31-1-43 24-31-8-39 18-25z"
-        fill={light ? '#fff' : DARK}
-      />
-      <path
-        d="m156 58 20 52-16 36 30 38-28 42 13 58-30 38"
-        stroke={light ? '#fff' : DARK}
-        strokeWidth="4"
-        opacity=".5"
-      />
-    </svg>
-  );
-}
 
 function FadeSlideUp({
   children,
@@ -282,17 +260,20 @@ export function JpcMovemberPage() {
         : formState.diet;
 
     const payload = {
+      // Gravity Form Field IDs explicitly mapped:
+      input_1: formState.name,
+      input_3: formState.email,
+      input_4: formState.phone,
+      input_5: dietaryValue,
+      ...(formState.dietaryOther ? { input_6: formState.dietaryOther, dietaryOther: formState.dietaryOther } : {}),
+
+      // Standard fallback keys
       name: formState.name,
       email: formState.email,
       phone: formState.phone,
       dietary: dietaryValue,
       event: 'JPC Movember Conference 2026',
-      reference: generatedRef,
-      input_1: formState.name,
-      input_2: formState.email,
-      input_3: formState.phone,
-      input_4: dietaryValue,
-      input_8: 'Confirmed'
+      reference: generatedRef
     };
 
     try {
@@ -321,10 +302,18 @@ export function JpcMovemberPage() {
           id="home"
           className="relative flex min-h-[760px] items-end overflow-hidden bg-[#1E1E1E] pb-14 pt-36 text-white lg:min-h-screen lg:pb-20"
         >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_85%,rgba(252,54,55,.2),transparent_38%)]" />
-          <AfricaMark light />
+          {/* Hero Background Banner */}
+          <div className="pointer-events-none absolute inset-0 z-0">
+            <img
+              src="/JPC-Movember-Conference-banner.jpg"
+              alt="JPC Movember Conference 2026 Banner"
+              className="w-full h-full object-cover object-center filter brightness-[0.35] contrast-[1.1]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1E1E1E] via-[#1E1E1E]/80 to-[#1E1E1E]/55" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_85%,rgba(252,54,55,.22),transparent_45%)]" />
+          </div>
 
-          <div className="relative mx-auto w-full max-w-[1440px] px-6 lg:px-12">
+          <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 lg:px-12">
             <div className="mb-7 inline-flex bg-[#FC3637] px-3 py-2 text-[10px] font-bold uppercase tracking-[.15em] text-white">
               <span>Good Governance</span>
               <span className="mx-2 opacity-60">·</span>
@@ -432,12 +421,11 @@ export function JpcMovemberPage() {
         {/* Event Details Section */}
         <section
           id="details"
-          className="relative overflow-hidden bg-[#1E1E1E] px-6 py-20 text-white lg:px-12 lg:py-24"
+          className="relative overflow-hidden bg-[#1E1E1E] px-6 pt-16 pb-6 text-white lg:px-12 lg:pt-20 lg:pb-8"
         >
-          <AfricaMark light />
           <div className="relative mx-auto max-w-[1440px]">
             <FadeSlideUp>
-              <p className="mb-10 text-[11px] font-bold uppercase tracking-[.18em] text-[#FC3637]">
+              <p className="mb-8 text-[11px] font-bold uppercase tracking-[.18em] text-[#FC3637]">
                 Event Details
               </p>
             </FadeSlideUp>
@@ -461,9 +449,8 @@ export function JpcMovemberPage() {
         {/* Featured Speakers Section */}
         <section
           id="speakers"
-          className="relative overflow-hidden bg-[#1E1E1E] px-6 py-24 text-white lg:px-12 lg:py-32"
+          className="relative overflow-hidden bg-[#1E1E1E] px-6 pt-6 pb-20 text-white lg:px-12 lg:pt-8 lg:pb-24"
         >
-          <AfricaMark light />
           <div className="relative mx-auto max-w-[1440px]">
             <FadeSlideUp>
               <p className="mb-10 text-[11px] font-bold uppercase tracking-[.22em] text-[#FC3637]">
