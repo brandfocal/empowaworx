@@ -20,6 +20,18 @@
   ],
   "rewrites": [
     {
+      "source": "/jpc-movember-conference-2026",
+      "destination": "/jpc-movember-conference-2026/index.html"
+    },
+    {
+      "source": "/jpc-movember",
+      "destination": "/jpc-movember-conference-2026/index.html"
+    },
+    {
+      "source": "/jpc-movember-2026",
+      "destination": "/jpc-movember-conference-2026/index.html"
+    },
+    {
       "source": "/vip-legacy-recognition-honoring-dr-david-molapo",
       "destination": "/vip-legacy-recognition-honoring-dr-david-molapo/index.html"
     },

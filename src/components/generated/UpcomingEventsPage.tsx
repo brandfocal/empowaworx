@@ -28,6 +28,7 @@ interface EventData {
   category: string;
   isFeatured?: boolean;
   platform: string;
+  href?: string;
 }
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const TICKER_ITEMS: TickerItemData[] = [{
@@ -126,6 +127,17 @@ const EVENTS_DATA: EventData[] = [{
   description: 'A strategic funding engagement platform connecting founders, SMEs, and enterprises with impact investors, development finance institutions, and venture capital across Africa.',
   category: 'Funding Engagement',
   platform: 'EmpowaEntrepreneurs™'
+}, {
+  id: 'e-jpc-movember',
+  day: '25',
+  month: 'NOV',
+  year: '2026',
+  title: 'JPC Movember Conference 2026',
+  location: 'EmpowaWorx House, 364 Pine Avenue, Ferndale, Randburg',
+  description: 'Theme: Healthy Men. Accountable Leaders. A Stronger Johannesburg. In partnership with City of Joburg Property Company (JPC). Strategic Thrust: Good Governance. Opening Address by CEO Musah Makhunga, Programme MC Sechaba Motsieloa.',
+  category: 'Leadership Summit',
+  platform: 'EmpowaMen™',
+  href: '/jpc-movember-conference-2026'
 }, {
   id: 'e7',
   day: '28',
@@ -1039,7 +1051,7 @@ const AllEvents = () => {
                 <div className="ew-event-cta" style={{
                   paddingLeft: 'clamp(12px,2vw,36px)'
                 }}>
-                  <a href="/contact" className="cta-primary group">
+                  <a href={event.href || "/contact"} className="cta-primary group">
                     <span>Register</span>
                     <div className="cta-icon-container">
                       <ArrowUpRight size={14} className="text-[#1E1E1E]" />

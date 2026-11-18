@@ -37,6 +37,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       formId = process.env.GF_FORM_ID_NEWSLETTER || '5';
     } else if (formType === 'legacy-vip') {
       formId = process.env.GF_FORM_ID_LEGACY_VIP || '6';
+    } else if (formType === 'jpc-movember') {
+      formId = process.env.GF_FORM_ID_JPC_MOVEMBER || '7';
     }
 
     const targetUrl = `${wpUrl}/wp-json/gf/v2/forms/${formId}/submissions`;

@@ -9,6 +9,7 @@ const BrandExperiencePage = lazy(() => import('./components/generated/BrandExper
 const MediaGalleryPage = lazy(() => import('./components/generated/MediaGalleryPage').then(m => ({ default: m.MediaGalleryPage })));
 const LegacyEventsPage = lazy(() => import('./components/generated/LegacyEventsPage').then(m => ({ default: m.LegacyEventsPage })));
 const VipLegacyRecognitionPage = lazy(() => import('./components/generated/VipLegacyRecognitionPage').then(m => ({ default: m.VipLegacyRecognitionPage })));
+const JpcMovemberPage = lazy(() => import('./components/generated/JpcMovemberPage').then(m => ({ default: m.JpcMovemberPage })));
 const CareersPage = lazy(() => import('./components/generated/CareersPage').then(m => ({ default: m.CareersPage })));
 const UpcomingEventsPage = lazy(() => import('./components/generated/UpcomingEventsPage').then(m => ({ default: m.UpcomingEventsPage })));
 const ESGAdvisoryPage = lazy(() => import('./components/generated/ESGAdvisoryPage').then(m => ({ default: m.ESGAdvisoryPage })));
@@ -84,6 +85,9 @@ function App() {
         '/vip-legacy-recognition-honoring-dr-david-molapo',
         '/vip-legacy-recognition-honouring-dr-david-molapo',
         '/legacy',
+        '/jpc-movember-conference-2026',
+        '/jpc-movember',
+        '/jpc-movember-2026',
         '/careers',
         '/upcoming',
         '/contact',
@@ -214,6 +218,10 @@ function App() {
             currentPath.startsWith('/vip-legacy-recognition-honouring-dr-david-molapo') ||
             currentPath.startsWith('/legacy') ? (
           <VipLegacyRecognitionPage />
+        ) : currentPath.startsWith('/jpc-movember-conference-2026') ||
+            currentPath.startsWith('/jpc-movember') ||
+            currentPath.startsWith('/jpc-movember-2026') ? (
+          <JpcMovemberPage />
         ) : currentPath.startsWith('/careers') ? (
           <CareersPage />
         ) : currentPath.startsWith('/upcoming') ? (
