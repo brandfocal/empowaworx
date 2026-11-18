@@ -540,11 +540,6 @@ export function JpcMovemberPage() {
                     <p className="mt-4 max-w-sm text-black/55">
                       JPC Movember Conference 2026 registration received. Your seat has been recorded.
                     </p>
-                    {submissionRef && (
-                      <div className="mt-4 p-3 bg-neutral-100 border-l-2 border-[#FC3637] text-xs font-mono font-bold text-[#FC3637]">
-                        Ref: {submissionRef}
-                      </div>
-                    )}
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-7">
