@@ -74,7 +74,7 @@ const OVERVIEW_CARDS: OverviewCard[] = [
   {
     id: 'host-entity',
     label: 'Host Entity',
-    value: 'City of Joburg Property Company (JPC)'
+    value: 'Joburg Property Company (JPC)'
   },
   {
     id: 'strategic-thrust',
@@ -133,8 +133,7 @@ const TSHIRT_OPTIONS = [
   { id: 'XL - Extra Large', label: 'XL - Extra Large' },
   { id: '2XL - Double Extra Large', label: '2XL - Double Extra Large' },
   { id: '3XL', label: '3XL' },
-  { id: '4XL', label: '4XL' },
-  { id: 'Other', label: 'Other (Specify)' }
+  { id: '4XL', label: '4XL' }
 ];
 
 const FEATURED_SPEAKERS: FeaturedSpeaker[] = [
@@ -189,8 +188,7 @@ export function JpcMovemberPage() {
     phone: '',
     diet: 'None',
     dietaryOther: '',
-    tshirtSize: '',
-    tshirtOther: ''
+    tshirtSize: ''
   });
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [submitted, setSubmitted] = React.useState(false);
@@ -259,10 +257,6 @@ export function JpcMovemberPage() {
       setErrorMessage('Please specify your T-shirt size.');
       return;
     }
-    if (formState.tshirtSize === 'Other' && !formState.tshirtOther.trim()) {
-      setErrorMessage('Please specify your custom T-shirt size.');
-      return;
-    }
 
     setIsSubmitting(true);
     const generatedRef = `JPC-MOV26-${Math.floor(1000 + Math.random() * 9000)}`;
@@ -270,10 +264,6 @@ export function JpcMovemberPage() {
       formState.diet === 'Other' && formState.dietaryOther
         ? `Other: ${formState.dietaryOther}`
         : formState.diet;
-    const finalTshirtSize =
-      formState.tshirtSize === 'Other' && formState.tshirtOther
-        ? `Other: ${formState.tshirtOther.trim()}`
-        : formState.tshirtSize;
 
     const payload = {
       // Gravity Form Field IDs explicitly mapped:
@@ -282,15 +272,15 @@ export function JpcMovemberPage() {
       input_4: formState.phone,
       input_5: dietaryValue,
       ...(formState.dietaryOther ? { input_6: formState.dietaryOther, dietaryOther: formState.dietaryOther } : {}),
-      input_7: finalTshirtSize,
+      input_7: formState.tshirtSize,
 
       // Standard fallback keys
       name: formState.name,
       email: formState.email,
       phone: formState.phone,
       dietary: dietaryValue,
-      tshirtSize: finalTshirtSize,
-      t_shirt_size: finalTshirtSize,
+      tshirtSize: formState.tshirtSize,
+      t_shirt_size: formState.tshirtSize,
       event: 'JPC Movember Conference 2026',
       reference: generatedRef
     };
@@ -679,22 +669,6 @@ export function JpcMovemberPage() {
                         />
                       </div>
                     </label>
-
-                    {formState.tshirtSize === 'Other' && (
-                      <label className="block">
-                        <span className="mb-2 block text-[10px] font-bold uppercase tracking-[.14em]">
-                          Please Specify Custom T-Shirt Size <span className="text-[#FC3637]">*</span>
-                        </span>
-                        <input
-                          required
-                          name="tshirtOther"
-                          value={formState.tshirtOther}
-                          onChange={handleInputChange}
-                          placeholder="e.g. 5XL"
-                          className="w-full border-0 border-b border-black/20 px-0 py-3 text-base outline-none focus:border-[#FC3637]"
-                        />
-                      </label>
-                    )}
 
                     <button
                       type="submit"
