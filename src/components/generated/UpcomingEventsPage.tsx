@@ -134,7 +134,7 @@ const EVENTS_DATA: EventData[] = [{
   year: '2026',
   title: 'JPC Movember Conference 2026',
   location: 'EmpowaWorx House, 364 Pine Avenue, Ferndale, Randburg',
-  description: 'Theme: Healthy Men. Accountable Leaders. A Stronger Johannesburg. In partnership with City of Joburg Property Company (JPC). Strategic Thrust: Good Governance. Opening Address by CEO Musah Makhunga, Programme MC Sechaba Motsieloa.',
+  description: 'Theme: Healthy Men. Accountable Leaders. A Stronger Johannesburg. In partnership with City of Joburg Property Company (JPC). Strategic Thrust: Good Governance. Opening Address by CEO Musah Makhunga.',
   category: 'Leadership Summit',
   platform: 'EmpowaMen™',
   href: '/jpc-movember-conference-2026'

@@ -72,9 +72,9 @@ const OVERVIEW_CARDS: OverviewCard[] = [
     value: 'Mr. Musah Makhunga, CEO, JPC'
   },
   {
-    id: 'programme-mc',
-    label: 'Programme MC',
-    value: 'Sechaba Motsieloa'
+    id: 'host-entity',
+    label: 'Host Entity',
+    value: 'City of Joburg Property Company (JPC)'
   },
   {
     id: 'strategic-thrust',
@@ -125,25 +125,27 @@ const DIETARY_OPTIONS: DietaryOption[] = [
   { id: 'other', label: 'Other' }
 ];
 
+const TSHIRT_OPTIONS = [
+  { id: '', label: 'Select T-shirt size' },
+  { id: 'S - Small', label: 'S - Small' },
+  { id: 'M - Medium', label: 'M - Medium' },
+  { id: 'L - Large', label: 'L - Large' },
+  { id: 'XL - Extra Large', label: 'XL - Extra Large' },
+  { id: '2XL - Double Extra Large', label: '2XL - Double Extra Large' },
+  { id: '3XL', label: '3XL' },
+  { id: '4XL', label: '4XL' },
+  { id: 'Other', label: 'Other (Specify)' }
+];
+
 const FEATURED_SPEAKERS: FeaturedSpeaker[] = [
   {
     id: 'musah-makhunga',
     badge: 'OPENING ADDRESS',
     name: 'Mr. Musah Makhunga',
-    title: 'CEO, Johannesburg Property Company (JPC)',
-    bio: 'Mr. Musah Makhunga serves as the Chief Executive Officer of the Johannesburg Property Company (JPC), a key entity of the City of Johannesburg. As the opening address speaker, he sets the tone for a conference anchored in good governance, mens health, and the vision of a stronger, more accountable Johannesburg.',
+    title: 'CEO, Joburg Property Company (JPC)',
+    bio: 'Mr. Musah Makhunga serves as the Chief Executive Officer of the Joburg Property Company (JPC), a key entity of the City of Johannesburg. As the opening address speaker, he sets the tone for a conference anchored in good governance, mens health, and the vision of a stronger, more accountable Johannesburg.',
     image: '/Musawakhe-Makhunga.jpeg',
-    imageAlt: 'Mr. Musah Makhunga - CEO, Johannesburg Property Company'
-  },
-  {
-    id: 'sechaba-motsieloa',
-    badge: 'PROGRAMME MC',
-    name: 'Sechaba Motsieloa',
-    title: 'Executive Director, Events, Experiences and Strategic Platforms, EmpowaWorx',
-    bio: 'Sechaba Motsieloa is a celebrated media personality, master of ceremonies, and strategic events architect. As Programme MC for the JPC Movember Conference 2026, he brings energy, precision, and gravitas to a platform dedicated to healthy men and accountable leadership.',
-    image: '/Sechaba-Motsieloa.jpg',
-    fallbackImage: '/team_faculty/Sechaba-Motsieloa.jpg',
-    imageAlt: 'Sechaba Motsieloa - Programme MC'
+    imageAlt: 'Mr. Musah Makhunga - CEO, Joburg Property Company'
   }
 ];
 
@@ -186,7 +188,9 @@ export function JpcMovemberPage() {
     email: '',
     phone: '',
     diet: 'None',
-    dietaryOther: ''
+    dietaryOther: '',
+    tshirtSize: '',
+    tshirtOther: ''
   });
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [submitted, setSubmitted] = React.useState(false);
@@ -251,6 +255,14 @@ export function JpcMovemberPage() {
       setErrorMessage('Please enter your Contact Number.');
       return;
     }
+    if (!formState.tshirtSize) {
+      setErrorMessage('Please specify your T-shirt size.');
+      return;
+    }
+    if (formState.tshirtSize === 'Other' && !formState.tshirtOther.trim()) {
+      setErrorMessage('Please specify your custom T-shirt size.');
+      return;
+    }
 
     setIsSubmitting(true);
     const generatedRef = `JPC-MOV26-${Math.floor(1000 + Math.random() * 9000)}`;
@@ -258,6 +270,10 @@ export function JpcMovemberPage() {
       formState.diet === 'Other' && formState.dietaryOther
         ? `Other: ${formState.dietaryOther}`
         : formState.diet;
+    const finalTshirtSize =
+      formState.tshirtSize === 'Other' && formState.tshirtOther
+        ? `Other: ${formState.tshirtOther.trim()}`
+        : formState.tshirtSize;
 
     const payload = {
       // Gravity Form Field IDs explicitly mapped:
@@ -266,12 +282,15 @@ export function JpcMovemberPage() {
       input_4: formState.phone,
       input_5: dietaryValue,
       ...(formState.dietaryOther ? { input_6: formState.dietaryOther, dietaryOther: formState.dietaryOther } : {}),
+      input_7: finalTshirtSize,
 
       // Standard fallback keys
       name: formState.name,
       email: formState.email,
       phone: formState.phone,
       dietary: dietaryValue,
+      tshirtSize: finalTshirtSize,
+      t_shirt_size: finalTshirtSize,
       event: 'JPC Movember Conference 2026',
       reference: generatedRef
     };
@@ -454,11 +473,11 @@ export function JpcMovemberPage() {
           <div className="relative mx-auto max-w-[1440px]">
             <FadeSlideUp>
               <p className="mb-10 text-[11px] font-bold uppercase tracking-[.22em] text-[#FC3637]">
-                FEATURED SPEAKERS
+                FEATURED SPEAKER
               </p>
             </FadeSlideUp>
 
-            <div className="grid gap-6 lg:grid-cols-2">
+            <div className="grid gap-6 max-w-4xl mx-auto">
               {FEATURED_SPEAKERS.map(speaker => (
                 <FadeSlideUp
                   key={speaker.id}
@@ -628,6 +647,50 @@ export function JpcMovemberPage() {
                           value={formState.dietaryOther}
                           onChange={handleInputChange}
                           placeholder="e.g. Diabetic, nut allergy, etc."
+                          className="w-full border-0 border-b border-black/20 px-0 py-3 text-base outline-none focus:border-[#FC3637]"
+                        />
+                      </label>
+                    )}
+
+                    <label className="block">
+                      <span className="mb-2 block text-[10px] font-bold uppercase tracking-[.14em]">
+                        Please specify T-shirt size <span className="text-[#FC3637]">*</span>
+                      </span>
+                      <div className="relative">
+                        <select
+                          required
+                          value={formState.tshirtSize}
+                          onChange={e => setFormState(prev => ({ ...prev, tshirtSize: e.target.value }))}
+                          className="w-full appearance-none border-0 border-b border-black/20 bg-white px-0 py-3 text-base outline-none focus:border-[#FC3637]"
+                        >
+                          {TSHIRT_OPTIONS.map(opt => (
+                            <option
+                              key={opt.id || 'placeholder'}
+                              value={opt.id}
+                              disabled={opt.id === ''}
+                            >
+                              {opt.label}
+                            </option>
+                          ))}
+                        </select>
+                        <ChevronDown
+                          className="pointer-events-none absolute right-0 top-3 text-black/40"
+                          size={18}
+                        />
+                      </div>
+                    </label>
+
+                    {formState.tshirtSize === 'Other' && (
+                      <label className="block">
+                        <span className="mb-2 block text-[10px] font-bold uppercase tracking-[.14em]">
+                          Please Specify Custom T-Shirt Size <span className="text-[#FC3637]">*</span>
+                        </span>
+                        <input
+                          required
+                          name="tshirtOther"
+                          value={formState.tshirtOther}
+                          onChange={handleInputChange}
+                          placeholder="e.g. 5XL"
                           className="w-full border-0 border-b border-black/20 px-0 py-3 text-base outline-none focus:border-[#FC3637]"
                         />
                       </label>
